@@ -1,0 +1,1871 @@
+/* ==========================================================================
+   CAILAVERSE SOCIAL NETWORK - High-Tech Networking Design System
+   "Pang Networking": Cyber-Cyan & Electric Indigo, Ambient Aura & Fluid Motion
+   ========================================================================== */
+
+:root {
+    /* Brand & Cyber-Networking Color System */
+    --caila-cyan: #00d2ff;
+    --caila-cyan-glow: rgba(0, 210, 255, 0.35);
+    --caila-primary: #6366f1;
+    --caila-primary-hover: #4f46e5;
+    --caila-primary-active: #4338ca;
+    --caila-primary-rgb: 99, 102, 241;
+    --caila-purple: #a855f7;
+    --caila-heart: #f43f5e;
+    --caila-heart-bg: rgba(244, 63, 94, 0.12);
+    --caila-success: #10b981;
+    --caila-warning: #f59e0b;
+    --caila-danger: #ef4444;
+
+    /* Signature Cyber-Networking Gradients */
+    --caila-gradient: linear-gradient(135deg, #00d2ff 0%, #6366f1 52%, #a855f7 100%);
+    --caila-gradient-hover: linear-gradient(135deg, #38bdf8 0%, #4f46e5 52%, #9333ea 100%);
+    --caila-gradient-subtle: linear-gradient(135deg, rgba(0, 210, 255, 0.08) 0%, rgba(99, 102, 241, 0.08) 100%);
+    --caila-network-border: linear-gradient(135deg, rgba(0, 210, 255, 0.4), rgba(99, 102, 241, 0.2));
+
+    /* Surfaces & Backgrounds - Light Mode */
+    --caila-bg: #f3f6fc;
+    --caila-surface: #ffffff;
+    --caila-surface-elevated: #ffffff;
+    --caila-surface-muted: #f8fafc;
+    --caila-surface-hover: #f1f5f9;
+
+    /* Text & Lines */
+    --caila-text: #0f172a;
+    --caila-text-muted: #64748b;
+    --caila-text-light: #94a3b8;
+    --caila-border: #e2e8f0;
+    --caila-border-subtle: #f1f5f9;
+
+    /* Shadows & Radii */
+    --caila-shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.04);
+    --caila-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -2px rgba(15, 23, 42, 0.04);
+    --caila-shadow-md: 0 10px 25px -3px rgba(15, 23, 42, 0.08);
+    --caila-shadow-lg: 0 20px 35px -5px rgba(15, 23, 42, 0.1);
+    --caila-glow: 0 0 20px rgba(99, 102, 241, 0.25);
+
+    --caila-radius: 16px;
+    --caila-radius-sm: 10px;
+    --caila-radius-lg: 24px;
+    --caila-radius-pill: 9999px;
+
+    /* Motion */
+    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+    --duration-fast: 0.18s;
+    --duration-norm: 0.28s;
+}
+
+/* ==========================================================================
+   HIGH-TECH DARK THEME ("Pang Networking" Cyber Aura)
+   ========================================================================== */
+[data-bs-theme="dark"] {
+    --caila-bg: #070b14;
+    --caila-surface: rgba(15, 23, 42, 0.78);
+    --caila-surface-elevated: rgba(22, 33, 58, 0.85);
+    --caila-surface-muted: rgba(30, 41, 59, 0.65);
+    --caila-surface-hover: rgba(30, 41, 59, 0.9);
+
+    --caila-text: #f8fafc;
+    --caila-text-muted: #94a3b8;
+    --caila-text-light: #64748b;
+    --caila-border: rgba(255, 255, 255, 0.08);
+    --caila-border-subtle: rgba(255, 255, 255, 0.04);
+
+    --caila-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --caila-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+    --caila-shadow-md: 0 12px 32px rgba(0, 0, 0, 0.55);
+    --caila-shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.7);
+    --caila-glow: 0 0 24px rgba(0, 210, 255, 0.22);
+
+    --caila-gradient-subtle: linear-gradient(135deg, rgba(0, 210, 255, 0.12) 0%, rgba(99, 102, 241, 0.14) 100%);
+}
+
+/* ==========================================================================
+   BASE & AMBIENT NETWORKING CANVAS
+   ========================================================================== */
+html {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: var(--caila-bg);
+    color: var(--caila-text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    transition: background-color var(--duration-norm) ease, color var(--duration-norm) ease;
+}
+
+/* Atmospheric Cyber Ambient Glow for Dark Mode */
+[data-bs-theme="dark"] body {
+    background-color: #070b14;
+    background-image: 
+        radial-gradient(circle at 10% 8%, rgba(14, 165, 233, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 90% 12%, rgba(99, 102, 241, 0.14) 0%, transparent 45%),
+        radial-gradient(circle at 50% 95%, rgba(168, 85, 247, 0.09) 0%, transparent 50%);
+    background-attachment: fixed;
+}
+
+main {
+    flex: 1;
+    width: 100%;
+}
+
+.min-w-0 { min-width: 0; }
+
+/* Micro-animations */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulseGlow {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+@keyframes heartPop {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.35); }
+    50% { transform: scale(0.92); }
+    75% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+.fade-up {
+    animation: fadeSlideUp 0.45s var(--ease-spring) both;
+}
+#feed > .fade-up:nth-child(2) { animation-delay: 0.05s; }
+#feed > .fade-up:nth-child(3) { animation-delay: 0.1s; }
+#feed > .fade-up:nth-child(4) { animation-delay: 0.15s; }
+#feed > .fade-up:nth-child(n+5) { animation-delay: 0.2s; }
+
+/* Pulse Dot (Live Signal Indicator) */
+.pulse-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--caila-success);
+    box-shadow: 0 0 8px var(--caila-success);
+    animation: pulseGlow 2.2s infinite;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   NAVIGATION BAR (Glassmorphic & Cyber-Clean)
+   ========================================================================== */
+.navbar-caila {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--caila-border);
+    transition: all var(--duration-norm) ease;
+    z-index: 1030;
+    padding: 0.75rem 0;
+}
+
+[data-bs-theme="dark"] .navbar-caila {
+    background: rgba(11, 18, 33, 0.82);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.nav-container {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding-left: clamp(1rem, 2.5vw, 2.5rem);
+    padding-right: clamp(1rem, 2.5vw, 2.5rem);
+    width: 100%;
+}
+
+.navbar-brand {
+    padding: 0;
+    margin-right: 1.5rem;
+    text-decoration: none;
+}
+
+.nav-logo-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--duration-norm) var(--ease-spring);
+}
+
+.navbar-brand:hover .nav-logo-wrap {
+    transform: scale(1.1) rotate(-4deg);
+}
+
+.nav-logo {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    background: var(--caila-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.15;
+}
+
+.brand-tagline {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--caila-text-muted);
+}
+
+/* Nav Search */
+.nav-search {
+    position: relative;
+    flex: 1;
+    max-width: 440px;
+}
+
+.nav-search i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--caila-text-muted);
+    font-size: 0.95rem;
+    pointer-events: none;
+    transition: color var(--duration-fast);
+}
+
+.nav-search .form-control {
+    background: var(--caila-surface-muted);
+    border: 1px solid var(--caila-border);
+    color: var(--caila-text);
+    border-radius: var(--caila-radius-pill);
+    padding-left: 44px;
+    padding-right: 18px;
+    height: 42px;
+    font-size: 0.92rem;
+    transition: all var(--duration-fast) ease;
+}
+
+.nav-search .form-control::placeholder {
+    color: var(--caila-text-muted);
+}
+
+.nav-search .form-control:focus {
+    background: var(--caila-surface);
+    border-color: var(--caila-cyan);
+    box-shadow: 0 0 0 4px rgba(0, 210, 255, 0.18);
+}
+
+.nav-search .form-control:focus + i {
+    color: var(--caila-cyan);
+}
+
+/* Nav Live Network Badge */
+.network-badge-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: var(--caila-radius-pill);
+    background: rgba(14, 165, 233, 0.12);
+    border: 1px solid rgba(14, 165, 233, 0.28);
+    color: #38bdf8;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.btn-nav-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.5rem 1rem;
+    border-radius: var(--caila-radius-pill);
+    color: var(--caila-text-muted);
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: all var(--duration-fast) var(--ease-spring);
+}
+
+.btn-nav-action:hover {
+    color: var(--caila-cyan);
+    background: var(--caila-surface-muted);
+}
+
+.btn-theme-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--caila-radius-pill);
+    background: var(--caila-surface-muted);
+    border: 1px solid var(--caila-border);
+    color: var(--caila-text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-spring);
+}
+
+.btn-theme-toggle:hover {
+    transform: rotate(20deg) scale(1.08);
+    background: rgba(0, 210, 255, 0.12);
+    color: var(--caila-cyan);
+    border-color: rgba(0, 210, 255, 0.3);
+}
+
+.nav-user-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 14px 4px 4px;
+    border-radius: var(--caila-radius-pill);
+    border: 1px solid var(--caila-border);
+    background: var(--caila-surface);
+    text-decoration: none;
+    color: var(--caila-text);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all var(--duration-fast) ease;
+}
+
+.nav-user-chip:hover,
+.nav-user-chip[aria-expanded="true"] {
+    background: var(--caila-surface-muted);
+    border-color: rgba(0, 210, 255, 0.35);
+    color: var(--caila-cyan);
+}
+
+.dropdown-menu {
+    border-radius: var(--caila-radius);
+    border: 1px solid var(--caila-border);
+    box-shadow: var(--caila-shadow-lg);
+    background: var(--caila-surface);
+    padding: 8px;
+    animation: fadeSlideUp 0.22s var(--ease-spring) both;
+}
+
+[data-bs-theme="dark"] .dropdown-menu {
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(20px);
+}
+
+.dropdown-item {
+    border-radius: var(--caila-radius-sm);
+    padding: 9px 14px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--caila-text);
+    display: flex;
+    align-items: center;
+    transition: all var(--duration-fast);
+}
+
+.dropdown-item:hover {
+    background: var(--caila-surface-muted);
+    color: var(--caila-cyan);
+}
+
+/* ==========================================================================
+   LAYOUT: WIDE, FIT & RESPONSIVE
+   ========================================================================== */
+.page-wide {
+    max-width: 1480px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.75rem clamp(1rem, 2.5vw, 2.5rem) 2.5rem;
+}
+
+.feed-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.75rem;
+    align-items: start;
+}
+
+.feed-left,
+.feed-right {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    .feed-grid {
+        grid-template-columns: 275px minmax(0, 1fr);
+    }
+    .feed-left { display: block; }
+}
+
+@media (min-width: 1260px) {
+    .feed-grid {
+        grid-template-columns: 280px minmax(0, 1fr) 330px;
+    }
+    .feed-right { display: block; }
+}
+
+.feed-main {
+    max-width: 780px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.sticky-side {
+    position: sticky;
+    top: 92px;
+}
+
+/* ==========================================================================
+   CARD SYSTEM (Glassmorphic & Ambient Glow)
+   ========================================================================== */
+.card-caila {
+    background: var(--caila-surface);
+    border: 1px solid var(--caila-border);
+    border-radius: var(--caila-radius);
+    box-shadow: var(--caila-shadow-sm);
+    transition: transform var(--duration-norm) var(--ease-spring),
+                box-shadow var(--duration-norm) var(--ease-spring),
+                border-color var(--duration-norm) ease;
+}
+
+[data-bs-theme="dark"] .card-caila {
+    background: rgba(15, 23, 42, 0.76);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card-caila:hover {
+    box-shadow: var(--caila-shadow);
+    border-color: rgba(0, 210, 255, 0.28);
+}
+
+[data-bs-theme="dark"] .card-caila:hover {
+    box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 210, 255, 0.12);
+    border-color: rgba(0, 210, 255, 0.35);
+}
+
+.card-caila .card-header {
+    background: transparent;
+    border-bottom: 1px solid var(--caila-border);
+    padding: 0.95rem 1.25rem;
+    font-weight: 700;
+    font-size: 0.98rem;
+    color: var(--caila-text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.post-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.post-card.removing {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+    transition: all 0.35s ease;
+}
+
+/* ==========================================================================
+   BUTTONS & FORM SYSTEM
+   ========================================================================== */
+.btn-caila {
+    background: var(--caila-gradient);
+    color: #ffffff !important;
+    border: none;
+    border-radius: var(--caila-radius-pill);
+    padding: 0.55rem 1.4rem;
+    font-weight: 600;
+    font-size: 0.92rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 16px rgba(0, 210, 255, 0.25), 0 2px 8px rgba(99, 102, 241, 0.3);
+    transition: all var(--duration-fast) var(--ease-spring);
+    cursor: pointer;
+}
+
+.btn-caila:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 210, 255, 0.35), 0 4px 12px rgba(99, 102, 241, 0.45);
+    color: #ffffff;
+}
+
+.btn-caila:active {
+    transform: translateY(0);
+}
+
+.btn-soft {
+    background: var(--caila-surface-muted);
+    color: var(--caila-text-muted);
+    border: 1px solid var(--caila-border);
+    border-radius: var(--caila-radius-pill);
+    padding: 0.4rem 0.9rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all var(--duration-fast) ease;
+}
+
+.btn-soft:hover {
+    background: var(--caila-surface-hover);
+    color: var(--caila-text);
+    border-color: rgba(0, 210, 255, 0.3);
+}
+
+.btn-soft-danger:hover {
+    background: rgba(239, 68, 68, 0.12);
+    color: var(--caila-danger);
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* Form Controls */
+.form-control, .form-select {
+    border-radius: var(--caila-radius-sm);
+    border: 1px solid var(--caila-border);
+    background-color: var(--caila-surface);
+    color: var(--caila-text);
+    padding: 0.65rem 0.95rem;
+    font-size: 0.95rem;
+    transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--caila-cyan);
+    background-color: var(--caila-surface);
+    color: var(--caila-text);
+    box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.18);
+}
+
+/* ==========================================================================
+   AVATARS & LIVE ONLINE STATUS SYSTEM
+   ========================================================================== */
+.avatar {
+    border-radius: 50%;
+    object-fit: cover;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+.avatar-ring {
+    box-shadow: 0 0 0 3px var(--caila-surface), 0 0 0 5px var(--caila-cyan);
+}
+
+.avatar-text {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--caila-gradient);
+    color: #ffffff;
+    font-weight: 700;
+    user-select: none;
+}
+
+.avatar-status-wrapper {
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+}
+
+.avatar-online-dot {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    border-radius: 50%;
+    background: #10b981;
+    border: 2px solid var(--caila-surface);
+    box-shadow: 0 0 8px #10b981;
+    animation: pulseGlow 2.4s infinite;
+}
+
+/* ==========================================================================
+   COMPOSER (Post Creator)
+   ========================================================================== */
+.composer {
+    background: var(--caila-surface);
+    border: 1px solid var(--caila-border);
+    border-radius: var(--caila-radius);
+    padding: 1.25rem;
+    box-shadow: var(--caila-shadow-sm);
+    transition: box-shadow var(--duration-norm) ease, border-color var(--duration-norm) ease;
+}
+
+[data-bs-theme="dark"] .composer {
+    background: rgba(15, 23, 42, 0.78);
+    backdrop-filter: blur(18px);
+}
+
+.composer:focus-within {
+    border-color: rgba(0, 210, 255, 0.4);
+    box-shadow: var(--caila-shadow-md), 0 0 20px rgba(0, 210, 255, 0.12);
+}
+
+.composer-text {
+    background: var(--caila-surface-muted);
+    border: 1px solid transparent;
+    border-radius: var(--caila-radius-sm);
+    color: var(--caila-text);
+    padding: 0.85rem 1rem;
+    font-size: 0.96rem;
+    resize: none;
+    width: 100%;
+    transition: all var(--duration-fast) ease;
+}
+
+.composer-text:focus {
+    background: var(--caila-surface);
+    border-color: var(--caila-cyan);
+    box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.15);
+}
+
+.tag-chip {
+    border: none;
+    background: rgba(14, 165, 233, 0.14);
+    color: #38bdf8;
+    padding: 4px 10px;
+    border-radius: var(--caila-radius-pill);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.tag-chip:hover {
+    background: rgba(14, 165, 233, 0.25);
+    color: #00d2ff;
+    transform: translateY(-1px);
+}
+
+.counter-pill {
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: var(--caila-radius-pill);
+    background: var(--caila-surface-muted);
+    color: var(--caila-text-muted);
+}
+
+.preview-box img {
+    max-height: 280px;
+    width: auto;
+    max-width: 100%;
+    border-radius: var(--caila-radius-sm);
+    object-fit: cover;
+    border: 1px solid var(--caila-border);
+}
+
+.preview-clear-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(15, 23, 42, 0.75);
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   POST CARD & NETWORK ACTIONS
+   ========================================================================== */
+.post-author {
+    font-weight: 700;
+    color: var(--caila-text);
+    text-decoration: none;
+    font-size: 0.98rem;
+    transition: color var(--duration-fast);
+}
+
+.post-author:hover {
+    color: var(--caila-cyan);
+}
+
+.badge-network-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 7px;
+    border-radius: var(--caila-radius-pill);
+    background: rgba(14, 165, 233, 0.1);
+    color: #38bdf8;
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.post-content {
+    font-size: 1rem;
+    line-height: 1.6;
+    word-break: break-word;
+    color: var(--caila-text);
+}
+
+.post-image-wrap {
+    border-radius: var(--caila-radius);
+    overflow: hidden;
+    border: 1px solid var(--caila-border);
+    background: var(--caila-surface-muted);
+}
+
+.post-image {
+    width: 100%;
+    max-height: 520px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s var(--ease-spring);
+}
+
+.post-image-wrap:hover .post-image {
+    transform: scale(1.015);
+}
+
+/* Actions */
+.post-actions {
+    border-top: 1px solid var(--caila-border);
+}
+
+.like-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0.45rem 1.05rem;
+    border-radius: var(--caila-radius-pill);
+    border: 1px solid var(--caila-border);
+    background: var(--caila-surface);
+    color: var(--caila-text-muted);
+    font-weight: 600;
+    font-size: 0.88rem;
+    transition: all var(--duration-fast) var(--ease-spring);
+    cursor: pointer;
+}
+
+.like-btn i {
+    font-size: 1.05rem;
+    transition: transform var(--duration-fast);
+}
+
+.like-btn:hover {
+    background: var(--caila-heart-bg);
+    border-color: rgba(244, 63, 94, 0.4);
+    color: var(--caila-heart);
+}
+
+.like-btn.liked {
+    background: var(--caila-heart-bg);
+    border-color: rgba(244, 63, 94, 0.45);
+    color: var(--caila-heart);
+    box-shadow: 0 0 16px rgba(244, 63, 94, 0.25);
+}
+
+.like-btn.liked i {
+    color: var(--caila-heart);
+}
+
+.like-btn.pop i {
+    animation: heartPop 0.45s var(--ease-spring);
+}
+
+.action-stat {
+    font-size: 0.86rem;
+    color: var(--caila-text-muted);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.action-icon-btn {
+    border: none;
+    background: var(--caila-surface-muted);
+    border: 1px solid var(--caila-border);
+    color: var(--caila-text-muted);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.action-icon-btn:hover {
+    color: var(--caila-cyan);
+    border-color: rgba(0, 210, 255, 0.35);
+    background: rgba(0, 210, 255, 0.1);
+    transform: scale(1.08);
+}
+
+/* ==========================================================================
+   COMMENTS
+   ========================================================================== */
+.comments-wrapper {
+    margin-top: 0.75rem;
+    border-top: 1px dashed var(--caila-border);
+    padding-top: 1rem;
+}
+
+.comment-bubble {
+    background: var(--caila-surface-muted);
+    border-radius: var(--caila-radius);
+    border-top-left-radius: 4px;
+    padding: 0.65rem 0.95rem;
+    flex: 1;
+    min-width: 0;
+    border: 1px solid var(--caila-border);
+}
+
+.comment-author {
+    font-weight: 700;
+    color: var(--caila-text);
+    text-decoration: none;
+    font-size: 0.88rem;
+}
+
+.comment-input {
+    border-radius: var(--caila-radius-pill);
+    background: var(--caila-surface-muted);
+    border: 1px solid var(--caila-border);
+    padding-left: 1.15rem;
+    font-size: 0.9rem;
+    height: 40px;
+}
+
+.btn-send {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--caila-gradient);
+    color: #ffffff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 210, 255, 0.3);
+    transition: transform var(--duration-fast);
+}
+
+.btn-send:hover {
+    transform: scale(1.08);
+}
+
+/* ==========================================================================
+   SIDEBARS (Networking Mini Profile & Trending Hub)
+   ========================================================================== */
+.user-mini-banner {
+    height: 78px;
+    background: var(--caila-gradient);
+    position: relative;
+    overflow: hidden;
+}
+
+.network-grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+    background-size: 16px 16px;
+    opacity: 0.45;
+}
+
+.user-mini-avatar-wrap {
+    margin-top: -42px;
+    display: inline-block;
+}
+
+.user-mini-avatar-wrap .avatar {
+    border: 4px solid var(--caila-surface);
+    box-shadow: 0 0 0 3px var(--caila-cyan), var(--caila-shadow-md);
+}
+
+.network-status-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: var(--caila-radius-pill);
+    background: rgba(16, 185, 129, 0.12);
+    color: #34d399;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.stat-number { font-size: 1.05rem; }
+.stat-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* Menu */
+.menu-card {
+    padding: 0.5rem;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.75rem 1rem;
+    border-radius: var(--caila-radius-sm);
+    color: var(--caila-text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.94rem;
+    transition: all var(--duration-fast) var(--ease-spring);
+}
+
+.menu-link i {
+    font-size: 1.15rem;
+    color: var(--caila-text-muted);
+    transition: all var(--duration-fast);
+}
+
+.menu-link:hover {
+    background: var(--caila-surface-muted);
+    color: var(--caila-cyan);
+    transform: translateX(4px);
+}
+
+.menu-link:hover i {
+    color: var(--caila-cyan);
+    transform: scale(1.15);
+}
+
+.menu-link.active {
+    background: rgba(0, 210, 255, 0.12);
+    color: var(--caila-cyan);
+    border-left: 3px solid var(--caila-cyan);
+}
+
+.menu-link.active i {
+    color: var(--caila-cyan);
+}
+
+/* Trending Topics */
+.trend-item {
+    display: block;
+    padding: 8px 12px;
+    border-radius: var(--caila-radius-sm);
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--duration-fast);
+}
+
+.trend-item:hover {
+    background: var(--caila-surface-muted);
+    transform: translateX(3px);
+}
+
+.trend-meta {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--caila-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.trend-tag {
+    display: block;
+    font-weight: 700;
+    color: var(--caila-cyan);
+    font-size: 0.92rem;
+}
+
+.trend-count {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--caila-text-muted);
+}
+
+/* Discover People */
+.people-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.65rem 0.6rem;
+    border-radius: var(--caila-radius-sm);
+    text-decoration: none;
+    color: var(--caila-text);
+    transition: all var(--duration-fast);
+}
+
+.people-item:hover {
+    background: var(--caila-surface-muted);
+    transform: translateX(3px);
+}
+
+.btn-connect-pill {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0, 210, 255, 0.12);
+    color: var(--caila-cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--duration-fast);
+}
+
+.people-item:hover .btn-connect-pill {
+    transform: scale(1.15);
+    background: var(--caila-gradient);
+    color: #ffffff;
+}
+
+.footer-network-links a {
+    color: var(--caila-text-muted);
+    text-decoration: none;
+}
+.footer-network-links a:hover {
+    color: var(--caila-cyan);
+}
+
+/* ==========================================================================
+   PROFILE HERO
+   ========================================================================== */
+.profile-card-modern {
+    background: var(--caila-surface);
+    border: 1px solid var(--caila-border);
+    border-radius: var(--caila-radius-lg);
+    box-shadow: var(--caila-shadow);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+[data-bs-theme="dark"] .profile-card-modern {
+    background: rgba(15, 23, 42, 0.78);
+    backdrop-filter: blur(20px);
+}
+
+.profile-cover {
+    height: 190px;
+    background: var(--caila-gradient);
+    position: relative;
+}
+
+.profile-body-modern {
+    padding: 0 1.75rem 1.75rem;
+}
+
+.profile-header-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: -64px;
+    margin-bottom: 1.25rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.profile-avatar-wrap .avatar {
+    border: 5px solid var(--caila-surface);
+    box-shadow: 0 0 0 4px var(--caila-cyan), var(--caila-shadow-md);
+}
+
+.profile-meta-pills {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--caila-surface-muted);
+    border: 1px solid var(--caila-border);
+    padding: 5px 12px;
+    border-radius: var(--caila-radius-pill);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--caila-text-muted);
+}
+
+/* ==========================================================================
+   AUTH PAGES & TOASTS
+   ========================================================================== */
+.auth-wrap {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    background: var(--caila-bg);
+}
+
+.auth-hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3.5rem 3rem 2rem;
+    background: var(--caila-gradient);
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.auth-hero-title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+}
+
+.auth-hero-features {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+}
+
+.auth-hero-features li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.98rem;
+    font-weight: 500;
+    margin-bottom: 0.85rem;
+}
+
+.auth-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 1.5rem;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 440px;
+    background: var(--caila-surface);
+    border: 1px solid var(--caila-border);
+    border-radius: var(--caila-radius-lg);
+    padding: 2.5rem 2.25rem;
+    box-shadow: var(--caila-shadow-lg);
+}
+
+@media (max-width: 991.98px) {
+    .auth-wrap { grid-template-columns: 1fr; }
+    .auth-hero { display: none; }
+    .auth-side { min-height: 100vh; min-height: 100dvh; }
+}
+
+/* Toast */
+#toast-area {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: min(92vw, 420px);
+    pointer-events: none;
+}
+
+.caila-toast {
+    pointer-events: auto;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    border-radius: var(--caila-radius-pill);
+    background: var(--caila-surface);
+    color: var(--caila-text);
+    border: 1px solid var(--caila-border);
+    box-shadow: var(--caila-shadow-lg);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+    transition: opacity 0.3s ease, transform 0.35s var(--ease-spring);
+}
+
+.caila-toast.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.caila-toast.hide {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.96);
+}
+
+.caila-toast > i { font-size: 1.25rem; flex-shrink: 0; }
+.caila-toast-success > i { color: var(--caila-success); }
+.caila-toast-danger > i { color: var(--caila-danger); }
+.caila-toast-warning > i { color: var(--caila-warning); }
+.caila-toast-info > i { color: var(--caila-cyan); }
+
+.caila-toast span { flex: 1; font-weight: 500; font-size: 0.92rem; }
+
+.toast-bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    background: var(--caila-gradient);
+    transform-origin: left;
+    animation: toastBar linear forwards;
+}
+
+@keyframes toastBar {
+    from { transform: scaleX(1); }
+    to { transform: scaleX(0); }
+}
+
+/* ==========================================================================
+   MOBILE & UTILITY
+   ========================================================================== */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: var(--caila-surface);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid var(--caila-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 1020;
+    padding: 0 1rem;
+}
+
+.bottom-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--caila-text-muted);
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 600;
+    gap: 3px;
+    transition: color var(--duration-fast);
+}
+
+.bottom-nav a i { font-size: 1.25rem; }
+.bottom-nav a.active { color: var(--caila-cyan); }
+
+.footer-caila {
+    background: var(--caila-surface);
+    border-top: 1px solid var(--caila-border);
+    margin-top: 3.5rem;
+    padding: 1.5rem 0;
+    color: var(--caila-text-muted);
+    font-size: 0.88rem;
+}
+
+.footer-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 2.5vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+}
+
+.cursor-pointer { cursor: pointer; }
+.auth-body { overflow-x: hidden; }
+.auth-main { padding: 0; }
+
+
+/* ==========================================================================
+   FACEBOOK-STYLE INTERACTIONS: REACTIONS, SHARING & CONNECT/ADD FRIEND
+   ========================================================================== */
+
+/* Reaction Wrapper & Floating Reactions Dock */
+.reaction-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.fb-reactions-dock {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 2px;
+    display: none;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 14px;
+    background: var(--caila-surface-elevated);
+    border: 1px solid var(--caila-border);
+    border-radius: var(--caila-radius-pill);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), 0 0 20px rgba(0, 210, 255, 0.2);
+    z-index: 1050;
+    white-space: nowrap;
+    animation: fadeSlideUp 0.18s var(--ease-spring) both;
+}
+
+/* Invisible hover bridge: covers the gap completely so mouse NEVER loses hover */
+.fb-reactions-dock::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: -10px;
+    right: -10px;
+    height: 22px;
+    background: transparent;
+}
+
+[data-bs-theme="dark"] .fb-reactions-dock {
+    background: rgba(15, 23, 42, 0.96);
+    backdrop-filter: blur(24px);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Hover or JS-active class reveals dock */
+.reaction-wrapper:hover .fb-reactions-dock,
+.fb-reactions-dock:hover,
+.reaction-wrapper.dock-visible .fb-reactions-dock,
+.reaction-wrapper.dock-open .fb-reactions-dock {
+    display: flex;
+}
+
+.reaction-item {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 6px 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.18s var(--ease-spring);
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.reaction-emoji {
+    font-size: 1.75rem;
+    display: inline-block;
+    transition: transform 0.18s var(--ease-spring);
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.25));
+    pointer-events: none;
+}
+
+.reaction-item:hover .reaction-emoji,
+.reaction-item:focus .reaction-emoji {
+    transform: scale(1.48) translateY(-6px);
+}
+
+.reaction-tooltip {
+    pointer-events: none;
+    user-select: none;
+}
+
+.reaction-tooltip {
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: #ffffff;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+.reaction-item:hover .reaction-tooltip {
+    opacity: 1;
+}
+
+/* Facebook Action Buttons (Like / Comment / Share) */
+.fb-action-btn {
+    border: none;
+    background: transparent;
+    color: var(--caila-text-muted);
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.45rem 0.75rem;
+    border-radius: var(--caila-radius-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.fb-action-btn:hover {
+    background: var(--caila-surface-muted);
+    color: var(--caila-text);
+}
+
+/* Reaction Active Text Colors */
+.reacted-like { color: #1877f2 !important; font-weight: 700; }
+.reacted-love { color: #f02849 !important; font-weight: 700; }
+.reacted-care { color: #f7b125 !important; font-weight: 700; }
+.reacted-haha { color: #f7b125 !important; font-weight: 700; }
+.reacted-wow  { color: #f7b125 !important; font-weight: 700; }
+.reacted-sad  { color: #f7b125 !important; font-weight: 700; }
+.reacted-angry{ color: #e41e3f !important; font-weight: 700; }
+
+.react-mini-badge {
+    font-size: 0.85rem;
+    line-height: 1;
+}
+
+/* Embedded Shared Post (Facebook-Style Quote/Share) */
+.shared-post-embed {
+    background: var(--caila-surface-muted);
+    border: 1px solid var(--caila-border);
+    border-left: 4px solid var(--caila-cyan);
+    transition: border-color var(--duration-fast);
+}
+
+[data-bs-theme="dark"] .shared-post-embed {
+    background: rgba(30, 41, 59, 0.45);
+}
+
+.shared-post-embed:hover {
+    border-left-color: var(--caila-primary);
+}
+
+/* Add Friend / Connect Button */
+.btn-connect-action {
+    border: 1px solid var(--caila-border);
+    background: rgba(0, 210, 255, 0.12);
+    color: var(--caila-cyan);
+    border-radius: var(--caila-radius-pill);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all var(--duration-fast);
+}
+
+.btn-connect-action:hover {
+    background: var(--caila-gradient);
+    color: #ffffff;
+    border-color: transparent;
+    transform: translateY(-1px);
+}
+
+.btn-connect-action.following {
+    background: var(--caila-surface-muted);
+    color: var(--caila-text-muted);
+    border-color: var(--caila-border);
+}
+
+.btn-connect-action.following:hover {
+    background: rgba(239, 68, 68, 0.12);
+    color: var(--caila-danger);
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+
+/* ==========================================================================
+   AUTH PAGES — HERO, FORM ICONS, EYE TOGGLE, VALIDATION STYLES
+   ========================================================================== */
+
+.auth-hero-logo {
+    width: 64px;
+    height: 64px;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.auth-hero-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auth-hero-sub {
+    font-size: 1.05rem;
+    opacity: 0.88;
+    max-width: 380px;
+    line-height: 1.65;
+    margin: 1rem 0 0;
+}
+
+.auth-hero-features li {
+    opacity: 0.9;
+}
+
+.auth-hero-features li i {
+    font-size: 1.1rem;
+    opacity: 0.85;
+}
+
+/* Input with leading icon */
+.input-icon {
+    position: relative;
+}
+
+.input-icon > i:first-child {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--caila-text-muted);
+    font-size: 0.95rem;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.input-icon .form-control {
+    padding-left: 44px;
+}
+
+.input-icon:has(.eye-btn) .form-control {
+    padding-right: 48px;
+}
+
+.eye-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--caila-text-muted);
+    padding: 4px 6px;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    transition: color var(--duration-fast);
+}
+
+.eye-btn:hover {
+    color: var(--caila-primary);
+}
+
+/* Auth card */
+.auth-card .form-label {
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   ICON LINK BUTTONS (comment edit/delete)
+   ========================================================================== */
+
+.icon-link {
+    background: none;
+    border: 0;
+    padding: 4px;
+    color: var(--caila-text-light);
+    font-size: 0.88rem;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color var(--duration-fast), transform var(--duration-fast);
+    line-height: 1;
+}
+
+.icon-link:hover {
+    color: var(--caila-cyan);
+    transform: scale(1.18);
+}
+
+.icon-danger:hover {
+    color: var(--caila-danger);
+}
+
+/* ==========================================================================
+   POST CARD: HANDLE, TIME, STATS, EMPTY STATE
+   ========================================================================== */
+
+.post-handle {
+    font-size: 0.82rem;
+    color: var(--caila-text-muted);
+}
+
+.post-time {
+    font-size: 0.82rem;
+    color: var(--caila-text-light);
+}
+
+.post-stats-line {
+    border-top: 1px solid var(--caila-border);
+    font-size: 0.84rem;
+}
+
+.comment-text {
+    font-size: 0.9rem;
+    color: var(--caila-text);
+    word-break: break-word;
+    line-height: 1.5;
+    margin-top: 4px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--caila-text-muted);
+}
+
+.empty-state i {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 1rem;
+    opacity: 0.4;
+    background: var(--caila-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.empty-state p {
+    font-size: 1rem;
+    margin: 0;
+    opacity: 0.65;
+}
+
+/* ==========================================================================
+   USER MINI STATS BAR
+   ========================================================================== */
+
+.user-stats-bar {
+    gap: 8px;
+}
+
+.user-mini-bio {
+    font-size: 0.85rem;
+    color: var(--caila-text-muted);
+    line-height: 1.45;
+}
+
+.text-truncate-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* ==========================================================================
+   POST ACTIONS BORDER SPACING
+   ========================================================================== */
+
+.post-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding-top: 6px;
+    padding-bottom: 4px;
+}
+
+.comments-wrapper {
+    border-top: 1px solid var(--caila-border);
+}
+
+/* ==========================================================================
+   PEOPLE NAME
+   ========================================================================== */
+
+.people-name {
+    color: var(--caila-text);
+    font-size: 0.88rem;
+}
+
+/* ==========================================================================
+   NETWORK MINI FOOTER (in sidebar_right)
+   ========================================================================== */
+
+.network-mini-footer {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.75rem;
+}
+
+/* ==========================================================================
+   PROFILE COVER PATTERN
+   ========================================================================== */
+
+.profile-cover .network-grid-pattern {
+    z-index: 0;
+    opacity: 0.35;
+}
+
+/* ==========================================================================
+   TRENDING SIDEBAR CARD SPACING
+   ========================================================================== */
+
+.card-caila .badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: var(--caila-radius-pill);
+}
+
+/* ==========================================================================
+   MODAL: GLASSMORPHIC DARK MODE
+   ========================================================================== */
+
+[data-bs-theme="dark"] .modal-content {
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-bs-theme="dark"] .modal-header .btn-close {
+    filter: invert(1);
+}
+
+[data-bs-theme="dark"] .bg-body-tertiary {
+    background: rgba(30, 41, 59, 0.6) !important;
+}
+
+/* ==========================================================================
+   SCROLLBAR STYLING (WebKit)
+   ========================================================================== */
+
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--caila-border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 210, 255, 0.4);
+}
+
+/* ==========================================================================
+   SELECTION COLOR
+   ========================================================================== */
+
+::selection {
+    background: rgba(0, 210, 255, 0.25);
+    color: var(--caila-text);
+}
+
+/* ==========================================================================
+   COMMENT FORM FOCUS GLOW
+   ========================================================================== */
+
+.comment-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.comment-input:focus {
+    border-color: var(--caila-cyan);
+    box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.15);
+}
+
+/* ==========================================================================
+   REACTION FORM — Remove unwanted default borders
+   ========================================================================== */
+
+.reaction-form {
+    display: contents;
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE TWEAKS
+   ========================================================================== */
+
+@media (max-width: 767.98px) {
+    .auth-hero-title {
+        font-size: 2rem;
+    }
+
+    .auth-card {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .profile-cover {
+        height: 130px;
+    }
+
+    .profile-header-row {
+        margin-top: -52px;
+        gap: 0.75rem;
+    }
+
+    .page-wide {
+        padding: 1rem 0.85rem 5rem;
+    }
+
+    .fb-action-btn span {
+        display: none;
+    }
+
+    .fb-action-btn {
+        padding: 0.5rem;
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    body {
+        padding-bottom: 72px;
+    }
+}

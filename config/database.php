@@ -2,28 +2,35 @@
 /**
  * CailaVerse — Database Configuration
  *
- * For LOCAL development (XAMPP), keep values below as-is.
+ * Supports multiple environments automatically:
+ *   LOCAL (XAMPP)  → uses defaults: localhost / social_app / root / (no password)
+ *   Railway        → reads MYSQLHOST, MYSQLDATABASE, MYSQLUSER, MYSQLPASSWORD, MYSQLPORT
+ *   Other hosting  → set DB_HOST, DB_NAME, DB_USER, DB_PASS environment variables
  *
- * For PRODUCTION hosting, you have two options:
- *   Option A – Edit the constants directly in this file.
- *   Option B – Define these constants in your server's environment variables
- *              (php.ini / .htaccess SetEnv / cPanel Environment Variables)
- *              and they will be picked up automatically.
- *
- * Environment variable names:
- *   DB_HOST, DB_NAME, DB_USER, DB_PASS
+ * To override for shared hosting: edit the fallback values in getenv('...') ?: 'value'
  */
 
-define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
-define('DB_NAME', getenv('DB_NAME') ?: 'social_app');
-define('DB_USER', getenv('DB_USER') ?: 'root');
-define('DB_PASS', getenv('DB_PASS') ?: '');
+// Railway uses MYSQL* prefix; other hosts use DB_* prefix; fallback to XAMPP defaults
+$_dbHost = getenv('MYSQLHOST')     ?: (getenv('DB_HOST') ?: 'localhost');
+$_dbName = getenv('MYSQLDATABASE') ?: (getenv('DB_NAME') ?: 'social_app');
+$_dbUser = getenv('MYSQLUSER')     ?: (getenv('DB_USER') ?: 'root');
+$_dbPass = getenv('MYSQLPASSWORD') ?: (getenv('DB_PASS') ?: '');
+$_dbPort = getenv('MYSQLPORT')     ?: (getenv('DB_PORT') ?: '3306');
+
+define('DB_HOST', $_dbHost);
+define('DB_NAME', $_dbName);
+define('DB_USER', $_dbUser);
+define('DB_PASS', $_dbPass);
+define('DB_PORT', $_dbPort);
 
 function db(): PDO
 {
     static $pdo = null;
     if ($pdo === null) {
-        $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4';
+        $dsn = 'mysql:host=' . DB_HOST
+             . ';port=' . DB_PORT
+             . ';dbname=' . DB_NAME
+             . ';charset=utf8mb4';
         $pdo = new PDO(
             $dsn,
             DB_USER,

@@ -1,6 +1,0 @@
-.git
-.gitattributes
-node_modules
-*.log
-*.md
-!README.md

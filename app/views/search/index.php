@@ -14,7 +14,7 @@
 <?php if ($q === ''): ?>
     <div class="empty-state fade-up">
         <i class="bi bi-search-heart"></i>
-        <p>Find people and posts across CailaVerse.</p>
+        <p>Find people and posts across OmniSphere.</p>
     </div>
 <?php else: ?>
     <h5 class="fw-bold mb-3 fade-up d-flex align-items-center gap-2">

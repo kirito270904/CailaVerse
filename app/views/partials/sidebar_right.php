@@ -49,9 +49,9 @@
         <span class="badge bg-success-subtle text-success small">Live</span>
     </div>
     <div class="card-body p-2">
-        <a class="trend-item" href="<?= e(url('search', 'index', ['q' => 'CailaVerse'])) ?>">
+        <a class="trend-item" href="<?= e(url('search', 'index', ['q' => 'OmniSphere'])) ?>">
             <span class="trend-meta">Trending in Philippines</span>
-            <span class="trend-tag">#CailaVerse</span>
+            <span class="trend-tag">#OmniSphere</span>
             <span class="trend-count">1.4k posts &middot; Active</span>
         </a>
         <a class="trend-item" href="<?= e(url('search', 'index', ['q' => 'web'])) ?>">
@@ -83,6 +83,6 @@
     </div>
     <div class="d-flex align-items-center gap-2 text-muted" style="font-size: 0.78rem;">
         <span class="pulse-dot"></span>
-        <span>CailaVerse Social Network &copy; <?= date('Y') ?></span>
+        <span>OmniSphere Social Network &copy; <?= date('Y') ?></span>
     </div>
 </div>

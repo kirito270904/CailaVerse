@@ -26,7 +26,7 @@ $isOnline = isset($me['last_active']) ? is_user_online($me['last_active']) : tru
         <?php else: ?>
             <div class="network-status-chip mt-2 <?= $isOnline ? 'status-chip-online' : 'status-chip-offline' ?>">
                 <span class="<?= $isOnline ? 'pulse-dot' : 'offline-dot' ?>"></span>
-                <span><?= $isOnline ? 'Active on CailaVerse' : 'Offline' ?></span>
+                <span><?= $isOnline ? 'Active on OmniSphere' : 'Offline' ?></span>
             </div>
         <?php endif; ?>
 

@@ -36,7 +36,7 @@
         <?php else: ?>
             <div class="network-status-chip mb-3 mt-2 <?= $targetOnline ? 'status-chip-online' : 'status-chip-offline' ?>">
                 <span class="<?= $targetOnline ? 'pulse-dot' : 'offline-dot' ?>"></span>
-                <span><?= $targetOnline ? 'Active on CailaVerse' : 'Offline' ?></span>
+                <span><?= $targetOnline ? 'Active on OmniSphere' : 'Offline' ?></span>
             </div>
         <?php endif; ?>
 

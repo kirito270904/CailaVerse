@@ -1,4 +1,4 @@
-# CailaVerse — Mini Social Networking Web Application
+# OmniSphere — Mini Social Networking Web Application
 
 **Web Systems and Technologies — Final Output**  
 **Saint Michael College of Caraga (SMCC)**  

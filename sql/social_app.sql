@@ -56,13 +56,13 @@ CREATE TABLE follows (
 
 -- Sample users (password for all: password)
 INSERT INTO users (username, password, full_name, bio) VALUES
-('john', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'John Michael Caila', 'Founder & developer of CailaVerse. Welcome to the network! 🚀'),
-('juan', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Juan Dela Cruz', 'BSIT student and CailaVerse member.'),
+('john', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'John Michael Caila', 'Founder & developer of OmniSphere. Welcome to the network! 🚀'),
+('juan', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Juan Dela Cruz', 'BSIT student and OmniSphere member.'),
 ('maria', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Maria Santos', 'Love coding and coffee.'),
 ('pedro', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Pedro Reyes', 'Web developer in the making.');
 
 INSERT INTO posts (user_id, content, created_at) VALUES
-(1, 'Hello CailaVerse! This is my first post.', '2026-10-01 08:00:00'),
+(1, 'Hello OmniSphere! This is my first post.', '2026-10-01 08:00:00'),
 (2, 'Finished my PHP MVC project today. So happy!', '2026-10-02 09:30:00'),
 (3, 'Anyone up for a study group on MySQL?', '2026-10-03 14:15:00');
 

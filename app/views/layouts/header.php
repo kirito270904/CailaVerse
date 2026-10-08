@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= e($title ?? 'CailaVerse') ?> | CailaVerse Social Network</title>
+    <title><?= e($title ?? 'OmniSphere') ?> | OmniSphere Social Network</title>
     <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
     <link rel="alternate icon" type="image/png" href="assets/img/logo.png">
     <script>
         try {
-            var savedTheme = localStorage.getItem('caila-theme') || 'dark';
+            var savedTheme = localStorage.getItem('omnisphere-theme') || localStorage.getItem('caila-theme') || 'dark';
             document.documentElement.setAttribute('data-bs-theme', savedTheme);
         } catch (err) {}
     </script>
@@ -25,10 +25,10 @@
     <div class="nav-container d-flex align-items-center justify-content-between">
         <a class="navbar-brand d-flex align-items-center gap-2" href="<?= e(url()) ?>">
             <div class="nav-logo-wrap">
-                <img src="assets/img/logo.svg" alt="CailaVerse" class="nav-logo">
+                <img src="assets/img/logo.svg" alt="OmniSphere" class="nav-logo">
             </div>
             <div class="brand-text">
-                <span class="brand-title">CailaVerse</span>
+                <span class="brand-title">OmniSphere</span>
                 <span class="brand-tagline">Social Network</span>
             </div>
         </a>

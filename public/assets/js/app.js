@@ -63,28 +63,193 @@
         setTimeout(function () { showToast(t.message, t.type); }, 300 + i * 350);
     });
 
-    /* ----- Dark / Light Mode Switcher ----- */
+    /* ----- Dark / Light Mode Switcher (Universal) ----- */
     var root = document.documentElement;
-    var themeBtn = document.getElementById('themeToggle');
 
-    function syncThemeIcon() {
-        if (!themeBtn) { return; }
+    function syncThemeIcons() {
         var isDark = root.getAttribute('data-bs-theme') === 'dark';
-        themeBtn.innerHTML = isDark ? '<i class="bi bi-sun-fill text-warning"></i>' : '<i class="bi bi-moon-stars-fill"></i>';
-    }
-    syncThemeIcon();
-
-    if (themeBtn) {
-        themeBtn.addEventListener('click', function () {
-            var current = root.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark';
-            root.setAttribute('data-bs-theme', current);
-            try {
-                localStorage.setItem('caila-theme', current);
-                localStorage.setItem('smcc-theme', current);
-            } catch (err) {}
-            syncThemeIcon();
+        var btns = document.querySelectorAll('#themeToggle, .theme-toggle, .btn-theme-toggle');
+        btns.forEach(function (btn) {
+            btn.innerHTML = isDark ? '<i class="bi bi-sun-fill text-warning"></i>' : '<i class="bi bi-moon-stars-fill"></i>';
         });
     }
+    syncThemeIcons();
+
+    document.addEventListener('click', function (ev) {
+        var toggle = ev.target.closest('#themeToggle, .theme-toggle, .btn-theme-toggle');
+        if (!toggle) { return; }
+        ev.preventDefault();
+        var current = root.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-bs-theme', current);
+        try {
+            localStorage.setItem('omnisphere-theme', current);
+            localStorage.setItem('caila-theme', current);
+            localStorage.setItem('smcc-theme', current);
+        } catch (err) {}
+        syncThemeIcons();
+    });
+
+    /* ----- Multilingual Language Switcher ----- */
+    var translations = {
+        en: {
+            slogan: "OmniSphere helps you connect and share with the people in your life.",
+            username_placeholder: "Username",
+            username_required: "Please enter your username.",
+            password_placeholder: "Password",
+            password_required: "Please enter your password.",
+            login_btn: "Log In",
+            forgot_link: "Forgotten account?",
+            create_account_btn: "Create new account",
+            bottom_link: "Create a Profile",
+            bottom_text: "for your student community on OmniSphere.",
+            footer_signup: "Sign Up",
+            footer_login: "Log In",
+            forgot_modal_title: "Demo Accounts",
+            forgot_modal_body: "You can log in with any demo account:<br><strong>john</strong>, <strong>juan</strong>, <strong>maria</strong>, or <strong>pedro</strong>.<br>Password for all: <code class=\"text-primary\">password</code>"
+        },
+        fil: {
+            slogan: "Tinutulungan ka ng OmniSphere na kumonekta at magbahagi sa mga tao sa iyong buhay.",
+            username_placeholder: "Username",
+            username_required: "Mangyaring ilagay ang iyong username.",
+            password_placeholder: "Password",
+            password_required: "Mangyaring ilagay ang iyong password.",
+            login_btn: "Mag-log In",
+            forgot_link: "Nakalimutang account?",
+            create_account_btn: "Gumawa ng bagong account",
+            bottom_link: "Gumawa ng Profile",
+            bottom_text: "para sa iyong komunidad ng mag-aaral sa OmniSphere.",
+            footer_signup: "Mag-sign Up",
+            footer_login: "Mag-log In",
+            forgot_modal_title: "Mga Demo Account",
+            forgot_modal_body: "Maaari kang mag-log in gamit ang alinmang demo account:<br><strong>john</strong>, <strong>juan</strong>, <strong>maria</strong>, o <strong>pedro</strong>.<br>Password para sa lahat: <code class=\"text-primary\">password</code>"
+        },
+        bis: {
+            slogan: "Ang OmniSphere motabang kanimo nga makakonektar ug mopaambit sa mga tawo sa imong kinabuhi.",
+            username_placeholder: "Username",
+            username_required: "Palihog isulod ang imong username.",
+            password_placeholder: "Password",
+            password_required: "Palihog isulod ang imong password.",
+            login_btn: "Sulod (Log In)",
+            forgot_link: "Nakalimot sa account?",
+            create_account_btn: "Paghimo og bag-ong account",
+            bottom_link: "Paghimo og Profile",
+            bottom_text: "alang sa komunidad sa mga estudyante sa OmniSphere.",
+            footer_signup: "Rehistro",
+            footer_login: "Sulod",
+            forgot_modal_title: "Mga Demo Account",
+            forgot_modal_body: "Mahimo kang mosulod gamit ang bisan unsang demo account:<br><strong>john</strong>, <strong>juan</strong>, <strong>maria</strong>, o <strong>pedro</strong>.<br>Ang password sa tanan: <code class=\"text-primary\">password</code>"
+        },
+        ceb: {
+            slogan: "Makatabang ang OmniSphere sa pagpakigsumpay ug pagpaambit sa imong mga kaila.",
+            username_placeholder: "Ngalan sa User",
+            username_required: "Isulod ang imong username.",
+            password_placeholder: "Sekretong Pulong",
+            password_required: "Isulod ang imong password.",
+            login_btn: "Mo-log In",
+            forgot_link: "Nawala ang account?",
+            create_account_btn: "Paghimo og bag-ong account",
+            bottom_link: "Paghimo og Profile",
+            bottom_text: "alang sa mga estudyante sa OmniSphere.",
+            footer_signup: "Pagpa-rehistro",
+            footer_login: "Sulod",
+            forgot_modal_title: "Mga Demo Account",
+            forgot_modal_body: "Poyde ka mo-login gamit ang demo accounts:<br><strong>john</strong>, <strong>juan</strong>, <strong>maria</strong>, o <strong>pedro</strong>.<br>Password sa tanan: <code class=\"text-primary\">password</code>"
+        },
+        es: {
+            slogan: "OmniSphere te ayuda a comunicarte y compartir con las personas que forman parte de tu vida.",
+            username_placeholder: "Nombre de usuario",
+            username_required: "Por favor, introduce tu nombre de usuario.",
+            password_placeholder: "Contraseña",
+            password_required: "Por favor, introduce tu contraseña.",
+            login_btn: "Iniciar sesión",
+            forgot_link: "¿Has olvidado la cuenta?",
+            create_account_btn: "Crear cuenta nueva",
+            bottom_link: "Crear un perfil",
+            bottom_text: "para tu comunidad estudiantil en OmniSphere.",
+            footer_signup: "Registrarte",
+            footer_login: "Iniciar sesión",
+            forgot_modal_title: "Cuentas de Demostración",
+            forgot_modal_body: "Puedes iniciar sesión con cualquier cuenta demo:<br><strong>john</strong>, <strong>juan</strong>, <strong>maria</strong> o <strong>pedro</strong>.<br>Contraseña para todos: <code class=\"text-primary\">password</code>"
+        },
+        ja: {
+            slogan: "OmniSphereを使えば、友達や知り合いとつながり、近況をシェアできます。",
+            username_placeholder: "ユーザーネーム",
+            username_required: "ユーザーネームを入力してください。",
+            password_placeholder: "パスワード",
+            password_required: "パスワードを入力してください。",
+            login_btn: "ログイン",
+            forgot_link: "アカウントをお忘れですか？",
+            create_account_btn: "新しいアカウントを作成",
+            bottom_link: "プロフィールを作成",
+            bottom_text: "OmniSphereの学生コミュニティ向け。",
+            footer_signup: "登録",
+            footer_login: "ログイン",
+            forgot_modal_title: "デモアカウント",
+            forgot_modal_body: "以下のデモアカウントでログインできます：<br><strong>john</strong>, <strong>juan</strong>, <strong>maria</strong>, または <strong>pedro</strong>。<br>共通パスワード：<code class=\"text-primary\">password</code>"
+        }
+    };
+
+    function applyLanguage(lang) {
+        var dict = translations[lang] || translations.en;
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+            var key = el.getAttribute('data-i18n');
+            if (dict[key] !== undefined) {
+                el.innerHTML = dict[key];
+            }
+        });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+            var key = el.getAttribute('data-i18n-placeholder');
+            if (dict[key] !== undefined) {
+                el.placeholder = dict[key];
+            }
+        });
+
+        // Update active class on language links
+        document.querySelectorAll('#langSelector .lang-link').forEach(function (link) {
+            if (link.getAttribute('data-lang') === lang) {
+                link.classList.add('active', 'fw-bold', 'text-primary');
+            } else {
+                link.classList.remove('active', 'fw-bold', 'text-primary');
+            }
+        });
+
+        try {
+            localStorage.setItem('omnisphere-lang', lang);
+        } catch (e) {}
+    }
+
+    // Initialize saved language
+    var savedLang = 'en';
+    try {
+        savedLang = localStorage.getItem('omnisphere-lang') || 'en';
+    } catch (e) {}
+    if (document.getElementById('langSelector')) {
+        applyLanguage(savedLang);
+    }
+
+    // Language click delegation
+    document.addEventListener('click', function (ev) {
+        var langLink = ev.target.closest('#langSelector .lang-link');
+        if (!langLink) { return; }
+        ev.preventDefault();
+        var lang = langLink.getAttribute('data-lang');
+        applyLanguage(lang);
+        showToast('Language changed / Na-ilis ang pinulongan', 'info');
+    });
+
+    /* ----- Forgotten Account Helper Modal ----- */
+    document.addEventListener('click', function (ev) {
+        var forgotBtn = ev.target.closest('#forgotAccountBtn');
+        if (!forgotBtn) { return; }
+        ev.preventDefault();
+        var modalEl = document.getElementById('forgotModal');
+        if (modalEl && window.bootstrap && window.bootstrap.Modal) {
+            var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+            modal.show();
+        } else {
+            alert("Demo Accounts:\nUsername: john, juan, maria, or pedro\nPassword: password");
+        }
+    });
 
     /* ----- Password Visibility Toggle ----- */
     document.addEventListener('click', function (ev) {

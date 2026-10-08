@@ -33,7 +33,7 @@
                         </label>
 
                         <div class="quick-tags d-none d-sm-flex align-items-center gap-1">
-                            <button type="button" class="tag-chip" data-insert-tag="#CailaVerse">#CailaVerse</button>
+                            <button type="button" class="tag-chip" data-insert-tag="#OmniSphere">#OmniSphere</button>
                             <button type="button" class="tag-chip" data-insert-tag="#WebTech">#WebTech</button>
                         </div>
                     </div>

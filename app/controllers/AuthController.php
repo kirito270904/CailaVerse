@@ -8,6 +8,7 @@ class AuthController extends Controller
         }
         $errors = [];
         $username = '';
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             csrf_check();
             $username = clean($_POST['username'] ?? '');
@@ -19,8 +20,17 @@ class AuthController extends Controller
                 flash('success', 'Welcome back, ' . $user['full_name'] . '!');
                 redirect(url());
             }
-            $errors[] = 'Invalid username or password.';
+            $_SESSION['auth_login_error'] = 'Invalid username or password.';
+            $_SESSION['auth_login_username'] = $username;
+            redirect(url('auth', 'login'));
         }
+
+        if (!empty($_SESSION['auth_login_error'])) {
+            $errors[] = $_SESSION['auth_login_error'];
+            $username = $_SESSION['auth_login_username'] ?? '';
+            unset($_SESSION['auth_login_error'], $_SESSION['auth_login_username']);
+        }
+
         $this->view('auth/login', ['errors' => $errors, 'username' => $username, 'title' => 'Login', 'layout' => 'auth']);
     }
 
@@ -67,10 +77,21 @@ class AuthController extends Controller
                 $id = $users->create($old['username'], password_hash($password, PASSWORD_DEFAULT), $old['full_name'], $image);
                 session_regenerate_id(true);
                 $_SESSION['user_id'] = $id;
-                flash('success', 'Account created. Welcome to CailaVerse!');
+                flash('success', 'Account created. Welcome to OmniSphere!');
                 redirect(url());
             }
+
+            $_SESSION['auth_reg_errors'] = $errors;
+            $_SESSION['auth_reg_old'] = $old;
+            redirect(url('auth', 'register'));
         }
+
+        if (!empty($_SESSION['auth_reg_errors'])) {
+            $errors = $_SESSION['auth_reg_errors'];
+            $old = $_SESSION['auth_reg_old'] ?? $old;
+            unset($_SESSION['auth_reg_errors'], $_SESSION['auth_reg_old']);
+        }
+
         $this->view('auth/register', ['errors' => $errors, 'old' => $old, 'title' => 'Register', 'layout' => 'auth']);
     }
 

@@ -35,7 +35,13 @@
                     <?= avatar($u, 44, true) ?>
                     <div class="flex-grow-1 min-w-0">
                         <div class="fw-bold post-author"><?= e($u['full_name']) ?></div>
-                        <small class="text-muted">@<?= e($u['username']) ?></small>
+                        <small class="text-muted">
+                            @<?= e($u['username']) ?> &middot;
+                            <?php $uOnline = is_user_online($u['last_active'] ?? null); ?>
+                            <span class="<?= $uOnline ? 'text-success fw-medium' : 'text-muted' ?>">
+                                <span class="<?= $uOnline ? 'pulse-dot' : 'offline-dot' ?> me-1" style="width:6px;height:6px;display:inline-block;vertical-align:middle;"></span><?= $uOnline ? 'Online' : 'Off' ?>
+                            </span>
+                        </small>
                         <?php if (!empty($u['bio'])): ?>
                             <small class="text-muted d-block text-truncate mt-1"><?= e($u['bio']) ?></small>
                         <?php endif; ?>

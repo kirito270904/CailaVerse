@@ -1,21 +1,26 @@
-<?php $isAuth = ($layout ?? '') === 'auth'; ?>
-</main>
-
 <?php if (!$isAuth): ?>
-<footer class="footer-caila">
-    <div class="footer-inner">
+<footer class="footer-caila mt-4 pt-3 border-top">
+    <div class="footer-inner d-flex flex-wrap align-items-center justify-content-between gap-2">
         <div class="d-flex align-items-center gap-2">
-            <img src="assets/img/logo.svg" alt="CailaVerse" height="26">
-            <span class="fw-semibold">CailaVerse</span>
-            <span class="text-muted">&middot; Modern High-Speed Social Network</span>
+            <img src="assets/img/logo.svg" alt="CailaVerse" height="22">
+            <span class="fw-semibold text-reset">CailaVerse</span>
+            <span class="text-muted small">&middot; &copy; <?= date('Y') ?> All Rights Reserved</span>
         </div>
-        <div class="d-flex align-items-center gap-2 small text-muted">
-            <span class="pulse-dot"></span>
-            <span>All Systems Operational &middot; &copy; <?= date('Y') ?></span>
+        <div class="footer-links d-flex align-items-center gap-3 small text-muted">
+            <a href="<?= e(url()) ?>" class="text-reset text-decoration-none">Feed</a>
+            <a href="<?= e(url('search', 'index')) ?>" class="text-reset text-decoration-none">Explore</a>
+            <?php if (!empty($me)): ?>
+                <a href="<?= e(url('profile', 'show', ['id' => $me['id']])) ?>" class="text-reset text-decoration-none">Profile</a>
+            <?php endif; ?>
+            <span class="d-flex align-items-center gap-1 text-success">
+                <span class="pulse-dot"></span>
+                <span>Active</span>
+            </span>
         </div>
     </div>
 </footer>
 <?php endif; ?>
+</main>
 
 <?php if (!$isAuth && !empty($me)): ?>
 <?php $cur = $_GET['c'] ?? 'post'; ?>

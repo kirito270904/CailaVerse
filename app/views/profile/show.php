@@ -30,12 +30,13 @@
             <?php endif; ?>
         </div>
 
+        <?php $targetOnline = isset($user['last_active']) ? is_user_online($user['last_active']) : false; ?>
         <?php if (!empty($user['bio'])): ?>
             <p class="mb-3 mt-2 text-secondary" style="max-width: 600px; font-size: 0.98rem;"><?= e($user['bio']) ?></p>
         <?php else: ?>
-            <div class="network-status-chip mb-3 mt-2">
-                <span class="pulse-dot"></span>
-                <span>Active Member of CailaVerse Network</span>
+            <div class="network-status-chip mb-3 mt-2 <?= $targetOnline ? 'status-chip-online' : 'status-chip-offline' ?>">
+                <span class="<?= $targetOnline ? 'pulse-dot' : 'offline-dot' ?>"></span>
+                <span><?= $targetOnline ? 'Active on CailaVerse' : 'Offline' ?></span>
             </div>
         <?php endif; ?>
 
@@ -52,9 +53,9 @@
                 <i class="bi bi-calendar3 text-secondary"></i>
                 Joined <?= e(date('F Y', strtotime($user['created_at']))) ?>
             </span>
-            <span class="meta-pill">
-                <i class="bi bi-hdd-network text-success"></i>
-                Node #<?= str_pad((string) $user['id'], 3, '0', STR_PAD_LEFT) ?>
+            <span class="meta-pill <?= $targetOnline ? 'text-success' : 'text-muted' ?>">
+                <span class="<?= $targetOnline ? 'pulse-dot' : 'offline-dot' ?>"></span>
+                <strong class="ms-1"><?= $targetOnline ? 'Online' : 'Off' ?></strong>
             </span>
         </div>
     </div>

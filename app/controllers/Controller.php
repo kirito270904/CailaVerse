@@ -30,6 +30,8 @@ class Controller
                 $user = (new UserModel())->findById((int) $_SESSION['user_id']);
                 if (!$user) {
                     unset($_SESSION['user_id']);
+                } else {
+                    (new UserModel())->touchActive((int) $user['id']);
                 }
             }
         }

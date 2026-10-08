@@ -1,7 +1,7 @@
 <?php
 class PostModel
 {
-    private const SELECT = 'SELECT p.*, u.username, u.full_name, u.profile_image,
+    private const SELECT = 'SELECT p.*, u.username, u.full_name, u.profile_image, u.last_active,
         (SELECT COUNT(*) FROM likes l WHERE l.post_id = p.id) AS like_count,
         (SELECT COUNT(*) FROM likes l WHERE l.post_id = p.id AND l.user_id = ?) AS liked,
         (SELECT reaction_type FROM likes l WHERE l.post_id = p.id AND l.user_id = ? LIMIT 1) AS my_reaction,
@@ -13,7 +13,8 @@ class PostModel
         sp.user_id AS shared_user_id,
         su.username AS shared_username,
         su.full_name AS shared_full_name,
-        su.profile_image AS shared_profile_image
+        su.profile_image AS shared_profile_image,
+        su.last_active AS shared_last_active
         FROM posts p
         JOIN users u ON u.id = p.user_id
         LEFT JOIN posts sp ON sp.id = p.shared_post_id

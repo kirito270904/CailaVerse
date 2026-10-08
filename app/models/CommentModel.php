@@ -8,7 +8,7 @@ class CommentModel
         }
         $marks = implode(',', array_fill(0, count($postIds), '?'));
         $stmt = db()->prepare(
-            'SELECT c.*, u.username, u.full_name, u.profile_image
+            'SELECT c.*, u.username, u.full_name, u.profile_image, u.last_active
              FROM comments c JOIN users u ON u.id = c.user_id
              WHERE c.post_id IN (' . $marks . ')
              ORDER BY c.created_at ASC, c.id ASC'
@@ -31,7 +31,7 @@ class CommentModel
     public function findWithUser(int $id): ?array
     {
         $stmt = db()->prepare(
-            'SELECT c.*, u.username, u.full_name, u.profile_image
+            'SELECT c.*, u.username, u.full_name, u.profile_image, u.last_active
              FROM comments c JOIN users u ON u.id = c.user_id WHERE c.id = ?'
         );
         $stmt->execute([$id]);

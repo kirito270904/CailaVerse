@@ -17,7 +17,13 @@
                     <?= avatar($person, 38, true) ?>
                     <span class="min-w-0 flex-grow-1">
                         <span class="d-block text-truncate people-name fw-semibold"><?= e($person['full_name']) ?></span>
-                        <small class="text-muted d-block text-truncate">@<?= e($person['username']) ?></small>
+                        <small class="text-muted d-block text-truncate">
+                            @<?= e($person['username']) ?> &middot;
+                            <?php $pOnline = is_user_online($person['last_active'] ?? null); ?>
+                            <span class="<?= $pOnline ? 'text-success fw-medium' : 'text-muted' ?>">
+                                <span class="<?= $pOnline ? 'pulse-dot' : 'offline-dot' ?> me-1" style="width:6px;height:6px;display:inline-block;vertical-align:middle;"></span><?= $pOnline ? 'Online' : 'Off' ?>
+                            </span>
+                        </small>
                     </span>
                 </a>
                 <form method="post" action="<?= e(url('follow', 'toggle')) ?>" data-ajax="follow" class="m-0 flex-shrink-0">

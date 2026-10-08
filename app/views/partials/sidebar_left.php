@@ -1,6 +1,8 @@
 <?php
 $cur = $_GET['c'] ?? 'post';
 $postCount = (int) (db()->query('SELECT COUNT(*) FROM posts WHERE user_id = ' . (int) $me['id'])->fetchColumn() ?: 0);
+$friendsCount = (new FollowModel())->followersCount((int) $me['id']);
+$isOnline = isset($me['last_active']) ? is_user_online($me['last_active']) : true;
 ?>
 <!-- User Mini Profile Card -->
 <div class="card card-caila user-mini-card mb-3">
@@ -14,7 +16,7 @@ $postCount = (int) (db()->query('SELECT COUNT(*) FROM posts WHERE user_id = ' . 
         <h6 class="user-mini-name mt-2 mb-0">
             <a href="<?= e(url('profile', 'show', ['id' => $me['id']])) ?>" class="text-decoration-none text-reset fw-bold">
                 <?= e($me['full_name']) ?>
-                <i class="bi bi-patch-check-fill text-info ms-1" title="Verified Network Member" style="font-size: 0.88rem;"></i>
+                <i class="bi bi-patch-check-fill text-info ms-1" title="Verified Member" style="font-size: 0.88rem;"></i>
             </a>
         </h6>
         <small class="text-muted d-block">@<?= e($me['username']) ?></small>
@@ -22,25 +24,28 @@ $postCount = (int) (db()->query('SELECT COUNT(*) FROM posts WHERE user_id = ' . 
         <?php if (!empty($me['bio'])): ?>
             <p class="user-mini-bio mt-2 mb-0 text-truncate-2"><?= e($me['bio']) ?></p>
         <?php else: ?>
-            <div class="network-status-chip mt-2">
-                <span class="pulse-dot"></span>
-                <span>Active on CailaVerse</span>
+            <div class="network-status-chip mt-2 <?= $isOnline ? 'status-chip-online' : 'status-chip-offline' ?>">
+                <span class="<?= $isOnline ? 'pulse-dot' : 'offline-dot' ?>"></span>
+                <span><?= $isOnline ? 'Active on CailaVerse' : 'Offline' ?></span>
             </div>
         <?php endif; ?>
 
-        <!-- Quick Stats Row -->
+        <!-- Quick Stats Row (Clean 3-col: Posts, Friends, Status — No Node ID) -->
         <div class="user-stats-bar mt-3 pt-2 border-top d-flex justify-content-around">
             <div class="stat-col text-center">
                 <div class="stat-number fw-bold"><?= $postCount ?></div>
                 <div class="stat-label small text-muted">Posts</div>
             </div>
             <div class="stat-col text-center">
-                <div class="stat-number fw-bold text-success">Online</div>
-                <div class="stat-label small text-muted">Status</div>
+                <div class="stat-number fw-bold text-info"><?= $friendsCount ?></div>
+                <div class="stat-label small text-muted">Friends</div>
             </div>
             <div class="stat-col text-center">
-                <div class="stat-number fw-bold text-info">#<?= str_pad((string) $me['id'], 3, '0', STR_PAD_LEFT) ?></div>
-                <div class="stat-label small text-muted">Node ID</div>
+                <div class="stat-number fw-bold <?= $isOnline ? 'text-success' : 'text-muted' ?> d-flex align-items-center justify-content-center gap-1">
+                    <span class="<?= $isOnline ? 'pulse-dot' : 'offline-dot' ?>"></span>
+                    <span><?= $isOnline ? 'Online' : 'Off' ?></span>
+                </div>
+                <div class="stat-label small text-muted">Status</div>
             </div>
         </div>
     </div>

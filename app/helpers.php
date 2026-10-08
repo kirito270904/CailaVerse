@@ -109,6 +109,14 @@ function time_ago(string $datetime): string
     return date('M j, Y', strtotime($datetime));
 }
 
+function is_user_online(?string $lastActive): bool
+{
+    if (!$lastActive) {
+        return false;
+    }
+    return (time() - strtotime($lastActive)) <= 300;
+}
+
 function avatar(array $user, int $size = 40, bool $showStatus = false): string
 {
     $style = 'width:' . $size . 'px;height:' . $size . 'px;font-size:' . round($size * 0.42) . 'px;';
@@ -119,7 +127,6 @@ function avatar(array $user, int $size = 40, bool $showStatus = false): string
     $renderedAvatar = '';
     if ($imgFile !== '' && is_file($imgPath)) {
         $renderedAvatar = '<img src="uploads/' . e($imgFile) . '" class="' . $class . '" style="' . $style . '" alt="' . e($user['full_name'] ?? 'User') . '" loading="lazy" onerror="this.onerror=null;this.replaceWith(this.nextElementSibling);">';
-        // Backup span in case of runtime error
         $name = $user['full_name'] ?? $user['username'] ?? '?';
         $initial = strtoupper(mb_substr($name, 0, 1));
         $renderedAvatar .= '<span class="' . $class . ' avatar-text d-none" style="' . $style . '">' . e($initial) . '</span>';
@@ -131,9 +138,12 @@ function avatar(array $user, int $size = 40, bool $showStatus = false): string
 
     if ($showStatus) {
         $badgeSize = max(10, round($size * 0.26));
+        $isOnline = isset($user['last_active']) ? is_user_online($user['last_active']) : false;
+        $dotClass = $isOnline ? 'avatar-online-dot' : 'avatar-offline-dot';
+        $title = $isOnline ? 'Online' : 'Offline';
         return '<span class="avatar-status-wrapper d-inline-block position-relative">'
             . $renderedAvatar
-            . '<span class="avatar-online-dot" style="width:' . $badgeSize . 'px;height:' . $badgeSize . 'px;" title="Online on Network"></span>'
+            . '<span class="' . $dotClass . '" style="width:' . $badgeSize . 'px;height:' . $badgeSize . 'px;" title="' . $title . '"></span>'
             . '</span>';
     }
 

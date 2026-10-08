@@ -1,0 +1,15 @@
+# Block PHP execution inside uploads (security)
+# Prevents uploaded files from being executed as PHP scripts
+<FilesMatch "\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Also block PHP 7/8 handler variants
+<FilesMatch "\.(php|php3|php4|php5|php7|phtml|phar)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Disable directory listing
+Options -Indexes

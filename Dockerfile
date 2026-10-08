@@ -3,6 +3,10 @@ FROM php:8.2-apache
 # Enable mod_rewrite
 RUN a2enmod rewrite
 
+# Fix Apache MPM conflict: disable event and worker, ensure only prefork is enabled
+RUN a2dismod mpm_event mpm_worker 2>/dev/null || true \
+    && a2enmod mpm_prefork
+
 # Install PDO MySQL
 RUN docker-php-ext-install pdo pdo_mysql
 
@@ -25,7 +29,8 @@ COPY . /var/www/html/
 RUN mkdir -p /var/www/html/public/uploads \
     && chown -R www-data:www-data /var/www/html/public/uploads \
     && chmod -R 775 /var/www/html/public/uploads \
-    && chown -R www-data:www-data /var/www/html \
-    && chmod +x /var/www/html/start.sh
+    && chown -R www-data:www-data /var/www/html
 
-CMD ["/var/www/html/start.sh"]
+EXPOSE 80
+
+CMD ["apache2-foreground"]

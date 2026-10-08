@@ -10,8 +10,8 @@ class UserModel
 
     public function findByUsername(string $username): ?array
     {
-        $stmt = db()->prepare('SELECT * FROM users WHERE username = ?');
-        $stmt->execute([$username]);
+        $stmt = db()->prepare('SELECT * FROM users WHERE LOWER(username) = LOWER(?)');
+        $stmt->execute([trim($username)]);
         return $stmt->fetch() ?: null;
     }
 

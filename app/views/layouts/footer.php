@@ -57,6 +57,8 @@
             </div>
         </div>
     </div>
+</div>
+
 <!-- Facebook-Style Share Modal -->
 <div class="modal fade" id="shareModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

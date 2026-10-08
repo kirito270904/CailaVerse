@@ -21,6 +21,12 @@
         <!-- Right Login Card Section (Facebook Style) -->
         <div class="fb-form-col fade-up">
             <div class="fb-login-box">
+                <?php if (!empty($errors)): ?>
+                    <div class="alert alert-danger py-2 px-3 small mb-3 rounded-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-exclamation-circle-fill flex-shrink-0"></i>
+                        <span><?= e($errors[0]) ?></span>
+                    </div>
+                <?php endif; ?>
                 <form method="post" action="<?= e(url('auth', 'login')) ?>" class="needs-validation" novalidate>
                     <?= csrf_field() ?>
                     <div class="mb-3">

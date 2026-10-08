@@ -15,6 +15,16 @@
             <h2 class="fw-bold mb-1">Create a new account</h2>
             <p class="text-muted small mb-0">It's quick and easy.</p>
         </div>
+        <?php if (!empty($errors)): ?>
+            <div class="alert alert-danger py-2 px-3 small mb-3 rounded-3">
+                <?php foreach ($errors as $err): ?>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-exclamation-circle-fill flex-shrink-0"></i>
+                        <span><?= e($err) ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
         <hr class="fb-divider my-3">
         <form method="post" action="<?= e(url('auth', 'register')) ?>" enctype="multipart/form-data" class="needs-validation" novalidate>
             <?= csrf_field() ?>
